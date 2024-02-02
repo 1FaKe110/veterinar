@@ -40,6 +40,14 @@ body {
     margin: 20px;
     margin-right: 10px; /* Отступ между карточками справа */
     margin-bottom: 10px; /* Отступ между карточками снизу */
+    box-shadow: 0px 0px 10px 0px rgb(229 229 229);
+    transition: 0.2s all ease-in-out;
+    border: 1px solid rgb(0 0 0 / 5%);
+    border-radius: 0.5rem;
+}
+.card:hover {
+    box-shadow: 0px 0px 0px 1px rgb(229 229 229);
+    transition: 0.2s all ease-in-out;
 }
 /* Удалить правый отступ у последней карточки в ряду */
 .card:nth-child(4n) {
