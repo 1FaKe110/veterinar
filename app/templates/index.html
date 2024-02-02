@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <script scr="{{ url_for('static', filename='js/checkAvalibleDate.js') }}"></script>
+
+    <!-- Подключение Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" rel="stylesheet">
+    <title>Veterinary Clinic</title>
+</head>
+<body>
+<!-- Приветственная шапка -->
+<div class="header">
+    <h1>Добро пожаловать в ветеринарную клинику</h1>
+    <p>Мы заботимся о здоровье ваших питомцев</p>
+</div>
+
+<main class="main">
+
+    <h4 class="block-title">Наши услуги</h4>
+    <div class="services">
+        {% for service in services %}
+        <!-- Карточки предоставляемых услуг -->
+        <div class="card" style="width: 18rem;">
+            <img src="{{service.image_url}}" class="card-img-top" alt="{{service.title}}">
+            <div class="card-body">
+                <h5 class="card-title">{{service.title}}</h5>
+                <p class="card-text">{{service.description_short}}</p>
+                <a href="#" class="btn btn-primary" data-toggle="modal" data-target="#serviceModal1">Подробнее</a>
+            </div>
+        </div>
+
+        <!-- Модальное окно для описания услуги 1 -->
+        <div class="modal fade" id="serviceModal1" tabindex="-1"
+             role="dialog" aria-labelledby="serviceModal1Label" aria-hidden="true">
+            <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="serviceModal1Label">{{service.title}}: Подробное описание</h5>
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                            <span aria-hidden="true">&times;</span>
+                        </button>
+                    </div>
+                    <div class="modal-body">
+                        {{service.description_full}}
+                    </div>
+                    <div class="modal-body-form">
+                        <form class="modal-registration-form">
+                            <div class="form-group">
+                                <label for="applicantName">Имя заявителя</label>
+                                <input type="text" class="form-control" id="applicantName"
+                                       placeholder="Имя заявителя" required
+                                       pattern="^[а-яА-ЯёЁa-zA-Z]+ [а-яА-ЯёЁa-zA-Z]+ ?[а-яА-ЯёЁa-zA-Z]+$">
+                            </div>
+                            <div class="form-group">
+                                <label for="contactNumber">Контактный номер телефона</label>
+                                <input type="tel" class="form-control" id="contactNumber"
+                                       placeholder="Контактный номер телефона" required
+                                       pattern="^((8|\+7)[\- ]?)?(\(?\d{3}\)?[\- ]?)?[\d\- ]{7,10}$">
+                            </div>
+                            <div class="form-group">
+                                <label for="petName">Имя питомца</label>
+                                <input type="text" class="form-control" id="petName" placeholder="Имя питомца"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="petAge">Возраст питомца</label>
+                                <input type="number" class="form-control" id="petAge" placeholder="Возраст питомца"
+                                       required>
+                            </div>
+                            <div class="form-group">
+                                <label for="petType">Тип питомца</label>
+                                <select class="form-control" id="petType" required>
+                                    <option value="">Выберите тип питомца</option>
+                                    <option value="Собака">Собака</option>
+                                    <option value="Кошка">Кошка</option>
+                                    <option value="Птица">Птица</option>
+                                    <option value="Грызун">Грызун</option>
+                                    <option value="Рыбка">Рыбка</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="appointmentDate">Выберите дату приема</label>
+                                <input type="date" class="form-control" id="appointmentDate" required
+                                       onchange="loadAvailableTimes()">
+                            </div>
+
+                            <div class="form-group">
+                                <label for="appointmentTime">Выберите время приема</label>
+                                <select class="form-control" id="appointmentTime" required>
+                                    <option value="">Выберите время</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label for="problemDescription">Описание проблемы</label>
+                                <textarea class="form-control" id="problemDescription" rows="3"
+                                          placeholder="Опишите проблему"></textarea>
+                            </div>
+                            <button type="submit" class="btn btn-primary">Отправить</button>
+                        </form>
+                    </div>
+                    <div class="modal-footer">
+                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Закрыть</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+        <!-- Аналогичные карточки и модальные окна для других предоставляемых услуг -->
+    </div>
+</main>
+
+<!-- Подключение Bootstrap JS -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/2.10.2/umd/popper.min.js"
+        integrity="sha512-nnzkI2u2Dy6HMnzMIkh7CPd1KX445z38XIu4jG1jGw7x5tSL3VBjE44dY4ihMU1ijAQV930SPM12cCFrB18sVw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+</body>
+</html>

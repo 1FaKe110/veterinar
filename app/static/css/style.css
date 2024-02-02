@@ -1,0 +1,86 @@
+/* Пример стилей */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  margin: 0;
+  padding: 0;
+}
+
+.main {
+    position: relative;
+    top: 50px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+/* Дополнительные стили */
+
+/* Стили для приветственной шапки */
+.header {
+  text-align: center;
+  background-color: #87CEEB; /* Светлосиний цвет */
+  padding: 20px;
+  border-bottom-right-radius: 70px;
+}
+
+/* Стили для карточек услуг */
+.services {
+    width: 70%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.card {
+    width: 300px;
+    height: 550px;
+    margin: 20px;
+    margin-right: 10px; /* Отступ между карточками справа */
+    margin-bottom: 10px; /* Отступ между карточками снизу */
+}
+/* Удалить правый отступ у последней карточки в ряду */
+.card:nth-child(4n) {
+    margin-right: 0;
+}
+
+/* Очистка отступа перед первой карточкой в ряду */
+.card:nth-child(4n+1) {
+    clear: both;
+}
+.card-body {
+    display: flex;
+    -ms-flex: 1 1 auto;
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1.25rem;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-between;
+}
+.card-title {
+    font-weight: bold;
+}
+
+
+/* Media Query для отображения одной карточки в ряд на мобильных устройствах */
+@media (max-width: 576px) {
+    .card {
+        width: 100%;
+    }
+}
+
+/* Стили модальных окон */
+.modal-body {
+  background-color: #398ce5; /* Светлосиний цвет */
+  color: white; /* Белый цвет текста */
+  border-bottom-right-radius: 30px;
+}
+
+.modal-body-form {
+    padding: 20px;
+}
+
